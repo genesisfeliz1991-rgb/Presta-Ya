@@ -1,63 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrestaYa PRO</title>
-<link rel="styleshet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PrestaYa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app">
-    <div id="login" class="centrado">
-      <div class="login-card">
-        <h1>💰 PrestaYa</h1>
-        <input type="email" id="email" placeholder="Correo" required>
-        <input type="password" id="password" placeholder="Contraseña" required>
-        <div class="botones-login">
-          <button class="btn btn-azul" onclick="login()">Entrar</button>
-          <button class="btn btn-celeste" onclick="registrar()">Registrarme</button>
-        </div>
-      </div>
+
+<div id="toast"></div>
+
+<!-- ===================== PANTALLA DE ACCESO ===================== -->
+<section id="login-view" class="view">
+  <div class="ledger-card login-card">
+    <div class="brand">
+      <span class="brand-mark">$</span>
+      <h1>PrestaYa</h1>
     </div>
+    <p class="brand-tag">Registro y control de préstamos</p>
 
-    <div id="main" style="display:none;">
-      <header>
-        <span>Usuario: <b id="userEmail"></b></span>
-        <button class="btn-salir" onclick="logout()">Salir</button>
-      </header>
-
-      <h2>⚙️ Configurar Tus Tasas</h2>
-      <div class="card-tasas">
-        <label>Diario %: <input type="number" id="tasaDiaria" step="0.1" value="3"></label>
-        <label>Semanal %: <input type="number" id="tasaSemanal" step="0.1" value="15"></label>
-        <label>Mensual %: <input type="number" id="tasaMensual" step="0.1" value="25"></label>
-        <button class="btn btn-azul" onclick="guardarTasas()">Guardar Tasas</button>
+    <form id="login-form" autocomplete="off">
+      <label>Correo
+        <input type="email" id="login-correo" required placeholder="tucorreo@ejemplo.com">
+      </label>
+      <label>Contraseña
+        <input type="password" id="login-clave" required placeholder="••••••••">
+      </label>
+      <p id="login-error" class="field-error"></p>
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" id="btn-entrar">Entrar</button>
+        <button type="button" class="btn btn-ghost" id="btn-registrarme">Registrarme</button>
       </div>
-
-      <h2>Nuevo Préstamo</h2>
-      <form id="formPrestamo" class="card">
-        <input type="text" id="nombreCliente" placeholder="Nombre Cliente" required>
-        <input type="number" id="monto" placeholder="Monto RD$" required>
-        <select id="plazoTipo" required>
-          <option value="">Tipo de Préstamo</option>
-          <option value="diario">Diario</option>
-          <option value="semanal">Semanal</option>
-          <option value="mensual">Mensual</option>
-        </select>
-        <input type="number" id="plazo" placeholder="Cantidad de cuotas" required>
-        <button type="submit" class="btn btn-verde">Guardar Préstamo</button>
-      </form>
-
-      <h2>Clientes y Préstamos</h2>
-      <div class="tabla-contenedor">
-        <table id="tablaPrestamos"></table>
-      </div>
-    </div>
+    </form>
   </div>
+</section>
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script src="script.js"></script>
+<!-- ===================== APLICACIÓN ===================== -->
+<section id="app-view" class="view hidden">
+
+  <header class="app-header">
+    <div class="brand small">
+      <span class="brand-mark">$</span>
+      <h1>PrestaYa</h1>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-tab="clientes">Clientes</button>
+      <button class="tab" data-tab="prestamos">Préstamos</button>
+    </nav>
+    <div class="header-right">
+      <span id="user-email" class="user-email"></span>
+      <button class="btn btn-ghost btn-small" id="btn-salir">Salir</button>
+    </div>
+  </header>
+
+  <!-- ---------- CLIENTES ---------- -->
+  <section id="clientes-tab" class="tab-panel">
+    <div class="ledger-card">
+      <h2>Nuevo cliente</h2>
+      <form id="cliente-form" class="grid-form">
+        <input type="hidden" id="cliente-id">
+        <label>Nombre
+          <input type="text" id="cliente-nombre" required>
+        </label>
+        <label>Apellido
+          <input type="text" id="cliente-apellido" required>
+        </label>
+        <label>Cédula
+          <input type="text" id="cliente-cedula" required>
+        </label>
+        <label>Teléfono
+          <input type="tel" id="cliente-telefono" required>
+        </label>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary" id="btn-cliente-registrar">Registrar</button>
+          <button type="button" class="btn btn-secondary" id="btn-cliente-actualizar">Actualizar</button>
+          <button type="button" class="btn btn-danger" id="btn-cliente-eliminar">Eliminar</button>
+          <button type="button" class="btn btn-ghost" id="btn-cliente-limpiar">Limpiar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="ledger-card">
+      <h2>Clientes registrados</h2>
+      <div class="table-wrap">
+        <table id="tabla-clientes">
+          <thead>
+            <tr><th>Nombre</th><th>Apellido</th><th>Cédula</th><th>Teléfono</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p class="empty-msg" id="clientes-vacio">Aún no hay clientes registrados.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- PRÉSTAMOS ---------- -->
+  <section id="prestamos-tab" class="tab-panel hidden">
+    <div class="ledger-card">
+      <h2>Nuevo préstamo</h2>
+      <form id="prestamo-form" class="grid-form">
+        <input type="hidden" id="prestamo-id">
+        <label>Cliente
+          <select id="prestamo-cliente" required></select>
+        </label>
+        <label>Monto (RD$)
+          <input type="number" id="prestamo-monto" step="0.01" required>
+        </label>
+        <label>Fecha
+          <input type="date" id="prestamo-fecha" required>
+        </label>
+        <label>Tasa de interés (%)
+          <input type="number" id="prestamo-tasa" step="0.01" required>
+        </label>
+        <label>Tiempo (meses)
+          <input type="number" id="prestamo-tiempo" required>
+        </label>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary" id="btn-prestamo-guardar">Guardar</button>
+          <button type="button" class="btn btn-secondary" id="btn-prestamo-editar">Editar</button>
+          <button type="button" class="btn btn-danger" id="btn-prestamo-eliminar">Eliminar</button>
+          <button type="button" class="btn btn-ghost" id="btn-prestamo-limpiar">Limpiar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="ledger-card">
+      <h2>Préstamos registrados</h2>
+      <div class="table-wrap">
+        <table id="tabla-prestamos">
+          <thead>
+            <tr><th>Cliente</th><th>Monto</th><th>Fecha</th><th>Tasa</th><th>Tiempo</th><th>Total a pagar</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p class="empty-msg" id="prestamos-vacio">Aún no hay préstamos registrados.</p>
+      </div>
+    </div>
+  </section>
+
+</section>
+
+<script type="module" src="script.js"></script>
 </body>
 </html>
