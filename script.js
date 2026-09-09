@@ -1,12 +1,6 @@
 // ============================================================
 // PrestaYa - script.js
 // ============================================================
-// IMPORTANTE: reemplaza estos valores con los de TU proyecto de
-// Firebase (Firebase Console > Configuración del proyecto >
-// "Tus apps" > Config del SDK). El projectId ya está puesto
-// según tu proyecto "prestaya-17cf1"; los demás campos son
-// solo ejemplos y NO van a funcionar hasta que pongas los tuyos.
-// ============================================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
@@ -18,12 +12,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "REEMPLAZA_CON_TU_API_KEY",
+  apiKey: "AIzaSyC2SedBLK50Vv-ojsA3qnURG23gNdnwMTg",
   authDomain: "prestaya-17cf1.firebaseapp.com",
   projectId: "prestaya-17cf1",
-  storageBucket: "prestaya-17cf1.appspot.com",
-  messagingSenderId: "REEMPLAZA_CON_TU_SENDER_ID",
-  appId: "REEMPLAZA_CON_TU_APP_ID"
+  storageBucket: "prestaya-17cf1.firebasestorage.app",
+  messagingSenderId: "55820924690",
+  appId: "1:55820924690:web:0a2fe35a7db7d6889065cb",
+  measurementId: "G-2XM03ZDZ3J"
 };
 
 const app = initializeApp(firebaseConfig);
