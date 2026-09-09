@@ -105,15 +105,20 @@ async function guardarPrestamo() {
   const monto = document.getElementById("monto").value;
   const plazoTipo = document.getElementById("plazoTipo").value;
   const plazo = document.getElementById("plazo").value;
+const calculo = calcularPrestamo(Number(monto), plazoTipo, Number(plazo));
 
-  const datos = {
-    uid: user.uid,
-    nombreCliente,
-    monto: Number(monto),
-    plazoTipo,
-    plazo: Number(plazo),
-    fecha: new Date().toISOString()
-  };
+const datos = {
+  uid: user.uid,
+  nombreCliente,
+  monto: Number(monto),
+  plazoTipo,
+  plazo: Number(plazo),
+  interesTotal: calculo.interesTotal,
+  totalPagar: calculo.totalPagar,
+  cuota: calculo.cuota,
+  ganancia: calculo.interesTotal, // esto es lo que te ganas
+  fecha: new Date().toISOString()
+};
 // Función para calcular interés y cuota
 function calcularPrestamo(monto, plazoTipo, plazo) {
   let interes = 0;
