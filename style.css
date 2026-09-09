@@ -1,19 +1,3 @@
-body { font-family: Arial; background: #eef2f7; margin: 0; padding: 20px; }
-#login, #main { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-input, select, button { width: 95%; padding: 10px; margin: 8px 0; border-radius: 5px; border: 1px solid #ddd; }
-button { background: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; }
-button:hover { background: #0056b3; }
-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-td, th { border: 1px solid #ddd; padding: 8px; text-align: left; }
-header {
-  display: flex;
-  justify-content: space-between; /* Manda el email a la izq y salir a la der */
-  align-items: center;
-  padding: 10px 20px;
-  background: #2563eb;
-  color: white;
-}
-/* FONDO GENERAL */
 body {
   font-family: Arial, sans-serif;
   background: #eef2f7;
@@ -24,70 +8,58 @@ body {
   margin: 0;
 }
 
-/* TARJETA DEL LOGIN */
 .login-card {
   background: white;
-  padding: 30px;
+  padding: 25px;
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  width: 320px;
+  width: 300px;
   text-align: center;
 }
 
-.login-card h1 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
+.login-card h1 { margin-bottom: 15px; font-size: 22px; }
 
-/* INPUTS */
 .login-card input {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
+  padding: 8px; /* más pequeño */
+  margin: 6px 0;
   border: 1px solid #ccc;
-  border-radius: 10px; /* bordes redondeados */
+  border-radius: 8px;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 13px;
 }
 
-/* CONTENEDOR DE BOTONES */
 .botones-login {
   display: flex;
-  flex-direction: column; /* uno debajo del otro */
-  gap: 10px;
-  margin-top: 15px;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-/* BOTONES GENERALES - MÁS PEQUEÑOS Y REDONDEADOS */
+/* BOTONES ULTRA PEQUEÑOS */
 .btn {
   width: 100%;
-  padding: 10px; /* más pequeño que antes */
+  padding: 8px 10px !important; /* FORZADO */
   border: none;
-  border-radius: 10px; /* bordes redondeados */
+  border-radius: 8px;
   color: white;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 13px !important; /* FORZADO */
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
 }
+.btn:hover { opacity: 0.85; }
 
-.btn:hover {
-  opacity: 0.9;
-  transform: scale(0.98);
-}
-
-/* COLORES */
 .btn-azul { background: #2563eb; }
 .btn-celeste { background: #0ea5e9; }
-.btn-rojo { background: #dc2626; } /* Salir en rojo para que se note */
+.btn-rojo { background: #dc2626; }
+.btn-verde { background: #16a34a; }
+.btn-salir { background: #dc2626; padding: 6px 12px; font-size: 12px; border-radius: 6px; border: none; color: white; }
 
-/* HEADER DE LA APP */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #2563eb;
   color: white;
-  padding: 12px 20px;
-  border-radius: 0 0 10px 10px;
+  padding: 10px 20px;
 }
