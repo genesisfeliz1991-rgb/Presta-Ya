@@ -8,78 +8,56 @@
 </head>
 <body>
   <div id="app">
-    <!-- LOGIN -->
+
+    <!-- LOGIN - SOLO 1 VEZ -->
     <div id="login">
-      <h1>💰 PrestaYa</h1>
-      <input type="email" id="email" placeholder="Correo">
-      <input type="password" id="password" placeholder="Contraseña">
+      <h1>🔒 PrestaYa</h1>
+      <input type="email" id="email" placeholder="Correo" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
       <button onclick="login()">Entrar</button>
       <button onclick="registrar()">Registrarme</button>
     </div>
 
+
     <!-- APP PRINCIPAL -->
     <div id="main" style="display:none;">
-      <h2>Bienvenido <span id="userEmail"></span> <button onclick="logout()">Salir</button></h2>
-      
-      <h3>Nuevo Préstamo</h3>
+      <header>
+        <span>Usuario: <b id="userEmail"></b></span>
+        <button onclick="logout()">Salir</button>
+      </header>
+
+      <h2>Nuevo Préstamo</h2>
       <form id="formPrestamo">
         <input type="text" id="nombreCliente" placeholder="Nombre Cliente" required>
         <input type="number" id="monto" placeholder="Monto RD$" required>
-        <select id="plazoTipo">
+        
+        <select id="plazoTipo" required>
+          <option value="">Tipo de Préstamo</option>
           <option value="diario">Diario</option>
           <option value="semanal">Semanal</option>
           <option value="mensual">Mensual</option>
         </select>
+        
         <input type="number" id="plazo" placeholder="Cantidad de cuotas" required>
+        
         <button type="submit">Guardar Préstamo</button>
         <button type="button" onclick="imprimir()">🖨️ Imprimir Recibo</button>
       </form>
 
-      <h3>Clientes y Préstamos</h3>
-      <table id="tablaPrestamos"></table>
+      <h2>Clientes y Préstamos</h2>
+      <table id="tablaPrestamos">
+        <!-- Aquí el script.js mete las filas solo -->
+      </table>
     </div>
+
   </div>
 
-  <!-- FIREBASE -->
- <script type="module" src="script.js"></script>
+  <!-- FIREBASE COMPAT + TU SCRIPT -->
+  <!-- OJO: como tu script.js usa import, quitamos type="module" y usamos compat -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="script.js"></script>
+
 </body>
 </html>
-<header id="main">
-  <span id="userEmail"></span>
-  <button onclick="logout()">Salir</button>
-</header>
-
-<!-- FORMULARIO PARA METER EL PRÉSTAMO -->
-<div id="main" style="display:none">
-  <header>
-    <span id="userEmail"></span>
-    <button onclick="logout()">Salir</button>
-  </header>
-
-  <h2>Registrar Préstamo</h2>
-  <form id="formPrestamo">
-    <input id="nombreCliente" type="text" placeholder="Nombre del Cliente" required>
-    <input id="monto" type="number" placeholder="Monto RD$" required>
-    
-    <select id="plazoTipo" required>
-      <option value="">Tipo de Préstamo</option>
-      <option value="diario">Diario</option>
-      <option value="semanal">Semanal</option>
-      <option value="mensual">Mensual</option>
-    </select>
-
-    <input id="plazo" type="number" placeholder="Cantidad de Cuotas" required>
-    
-    <button type="submit">Guardar Préstamo</button>
-  </form>
-
-  <h2>Lista de Préstamos</h2>
-  <table id="tablaPrestamos">
-    <!-- Aquí el script.js va a meter las filas solo -->
-  </table>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
-<script src="script.js"></script>
