@@ -13,3 +13,81 @@ header {
   background: #2563eb;
   color: white;
 }
+/* FONDO GENERAL */
+body {
+  font-family: Arial, sans-serif;
+  background: #eef2f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* TARJETA DEL LOGIN */
+.login-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 320px;
+  text-align: center;
+}
+
+.login-card h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* INPUTS */
+.login-card input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px; /* bordes redondeados */
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* CONTENEDOR DE BOTONES */
+.botones-login {
+  display: flex;
+  flex-direction: column; /* uno debajo del otro */
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* BOTONES GENERALES - MÁS PEQUEÑOS Y REDONDEADOS */
+.btn {
+  width: 100%;
+  padding: 10px; /* más pequeño que antes */
+  border: none;
+  border-radius: 10px; /* bordes redondeados */
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+/* COLORES */
+.btn-azul { background: #2563eb; }
+.btn-celeste { background: #0ea5e9; }
+.btn-rojo { background: #dc2626; } /* Salir en rojo para que se note */
+
+/* HEADER DE LA APP */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 0 0 10px 10px;
+}
