@@ -40,7 +40,7 @@ auth.onAuthStateChanged((user) => {
     cargarPrestamos(user.uid);
     cargarTasas(user.uid);
   } else {
-    document.getElementById("login").style.display = "block";
+    document.getElementById("login").style.display = "flex";
     document.getElementById("main").style.display = "none";
   }
 });
@@ -77,7 +77,7 @@ function calcularPrestamo(monto, plazo, tipo) {
     cuota: cuota.toFixed(2),
     total: montoTotal.toFixed(2),
     ganancia: interesTotal.toFixed(2),
-    tasaUsada: (tasa * 100) + "%"
+    tasaUsada: (tasa * 100).toFixed(1) + "%"
   };
 }
 
