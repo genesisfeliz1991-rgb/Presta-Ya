@@ -30,7 +30,13 @@
         <span>Usuario: <b id="userEmail"></b></span>
         <button class="btn-salir" onclick="logout()">Salir</button>
       </header>
-
+<h2>⚙️ Configurar Tasas</h2>
+<div class="card-tasas">
+  <label>Diario %: <input type="number" id="tasaDiaria" step="0.1" value="3"></label>
+  <label>Semanal %: <input type="number" id="tasaSemanal" step="0.1" value="15"></label>
+  <label>Mensual %: <input type="number" id="tasaMensual" step="0.1" value="25"></label>
+  <button class="btn btn-azul" onclick="guardarTasas()">Guardar Tasas</button>
+</div>
       <h2>Nuevo Préstamo</h2>
       <form id="formPrestamo">
         <input type="text" id="nombreCliente" placeholder="Nombre Cliente" required>
