@@ -4,39 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PrestaYa PRO</title>
-  <link rel="stylesheet" href="style.css?v=2"> <!-- ?v=2 para forzar caché -->
+  <link rel="stylesheet" href="estilo.css?v=5">
 </head>
 <body>
   <div id="app">
-
-    <!-- LOGIN -->
     <div id="login">
       <div class="login-card">
         <h1>💰 PrestaYa</h1>
         <input type="email" id="email" placeholder="Correo" required>
         <input type="password" id="password" placeholder="Contraseña" required>
-        
         <div class="botones-login">
           <button class="btn btn-azul" onclick="login()">Entrar</button>
           <button class="btn btn-celeste" onclick="registrar()">Registrarme</button>
-          <button class="btn btn-rojo" onclick="logout()">Salir</button>
         </div>
       </div>
     </div>
 
-    <!-- APP PRINCIPAL -->
     <div id="main" style="display:none;">
       <header>
         <span>Usuario: <b id="userEmail"></b></span>
         <button class="btn-salir" onclick="logout()">Salir</button>
       </header>
-<h2>⚙️ Configurar Tasas</h2>
-<div class="card-tasas">
-  <label>Diario %: <input type="number" id="tasaDiaria" step="0.1" value="3"></label>
-  <label>Semanal %: <input type="number" id="tasaSemanal" step="0.1" value="15"></label>
-  <label>Mensual %: <input type="number" id="tasaMensual" step="0.1" value="25"></label>
-  <button class="btn btn-azul" onclick="guardarTasas()">Guardar Tasas</button>
-</div>
+
+      <h2>⚙️ Configurar Tasas</h2>
+      <div class="card-tasas">
+        <label>Diario %: <input type="number" id="tasaDiaria" step="0.1" value="3"></label>
+        <label>Semanal %: <input type="number" id="tasaSemanal" step="0.1" value="15"></label>
+        <label>Mensual %: <input type="number" id="tasaMensual" step="0.1" value="25"></label>
+        <button class="btn btn-azul" onclick="guardarTasas()">Guardar Tasas</button>
+      </div>
+
       <h2>Nuevo Préstamo</h2>
       <form id="formPrestamo">
         <input type="text" id="nombreCliente" placeholder="Nombre Cliente" required>
@@ -47,21 +44,20 @@
           <option value="semanal">Semanal</option>
           <option value="mensual">Mensual</option>
         </select>
-        <input type="number" id="plazo" placeholder="Cantidad de cuotas" required>
+        <input type="number" id="plazo" placeholder="Cantidad de cuotas/tiempo" required>
         <button type="submit" class="btn btn-verde">Guardar Préstamo</button>
       </form>
 
       <h2>Clientes y Préstamos</h2>
       <table id="tablaPrestamos"></table>
     </div>
-
   </div>
 
-  <!-- FIREBASE COMPAT -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="script.js?v=4"></script> <!-- OJO: debe decir script.js -->
-
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <!-- TU CODIGO -->
+  <script src="script.js?v=5"></script>
 </body>
 </html>
