@@ -43,3 +43,29 @@ document.getElementById("btnEntrar").addEventListener("click", () => {
       alert("Error: " + error.message);
     });
 });
+/ PEGA AQUÍ TU firebaseConfig QUE COPIASTE
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "prestaya-17cf1.firebaseapp.com",
+  projectId: "prestaya-17cf1",
+  // ...todo lo demás
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+document.getElementById('btnRegistrar').onclick = function() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(() => alert("Usuario registrado con éxito ✅"))
+    .catch((error) => alert("Error: " + error.message));
+};
+
+document.getElementById('btnLogin').onclick = function() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  auth.signInWithEmailAndPassword(email, password)
+    .then(() => alert("Sesión iniciada ✅"))
+    .catch((error) => alert("Error: " + error.message));
+};
