@@ -57,10 +57,10 @@ const db = firebase.firestore();
 
 // ---------- TASAS POR TIPO ----------
 // Puedes cambiar estos % a los que tú usas
-const TASAS = {
-  diario: 0.02,   // 2% diario
-  semanal: 0.10,  // 10% semanal  
-  mensual: 0.20   // 20% mensual
+const TASAS = {const TASAS = {
+  diario: 0.03, // si cobras 3% diario pon 0.03
+  semanal: 0.15, // si cobras 15% semanal pon 0.15
+  mensual: 0.25 // si cobras 25% mensual pon 0.25
 };
 const firebaseConfig = {
   apiKey: "AIzaSyC2SedBlK50Vv-ojsA3qnURG23gNdnwMTg",
