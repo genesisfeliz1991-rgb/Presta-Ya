@@ -63,3 +63,5 @@ header {
   color: white;
   padding: 10px 20px;
 }
+.card-tasas { display: flex; gap: 10px; align-items: center; background: white; padding: 15px; border-radius: 10px; margin-bottom: 20px; flex-wrap: wrap;}
+.card-tasas input { width: 70px; }
