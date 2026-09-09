@@ -114,7 +114,24 @@ async function guardarPrestamo() {
     plazo: Number(plazo),
     fecha: new Date().toISOString()
   };
+// Función para calcular interés y cuota
+function calcularPrestamo(monto, plazoTipo, plazo) {
+  let interes = 0;
+  
+  if (plazoTipo === "diario") interes = 0.02; // 2% diario
+  if (plazoTipo === "semanal") interes = 0.05; // 5% semanal  
+  if (plazoTipo === "mensual") interes = 0.10; // 10% mensual
 
+  const interesTotal = monto * interes * plazo;
+  const totalPagar = monto + interesTotal;
+  const cuota = totalPagar / plazo;
+
+  return {
+    interesTotal,
+    totalPagar,
+    cuota
+  };
+}
   try {
     if (editandoId) {
       // Actualizar préstamo existente
