@@ -55,3 +55,18 @@ function login() {
 window.registrar = registrar;
 window.login = login;
 
+// Cerrar sesión
+function logout() {
+  auth.signOut().then(() => {
+    document.getElementById("main").style.display = "none";
+    document.getElementById("login").style.display = "block";
+  });
+}
+
+// Imprimir recibo
+function imprimir() {
+  window.print();
+}
+
+window.logout = logout;
+window.imprimir = imprimir;
