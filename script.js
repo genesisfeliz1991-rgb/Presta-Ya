@@ -1,71 +1,23 @@
-// 1. AQUI PEGA TU CONFIG DE FIREBASE
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_SENDER_ID",
-  appId: "TU_APP_ID"
-};
-
-// 2. CONECTAR FIREBASE
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// 3. FUNCIÓN REGISTRAR
-document.getElementById("btnRegistrar").addEventListener("click", () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      alert("Usuario registrado con éxito ✅");
-    })
-    .catch((error) => {
-      alert("Error: " + error.message);
-    });
-});
-
-// 4. FUNCIÓN ENTRAR
-document.getElementById("btnEntrar").addEventListener("click", () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      alert("Bienvenido ✅");
-      // aqui luego ponemos: window.location.href = "panel.html"
-    })
-    .catch((error) => {
-      alert("Error: " + error.message);
-    });
-});
-/ PEGA AQUÍ TU firebaseConfig QUE COPIASTE
-const firebaseConfig = {
-  apiKey: "TU_API_KEY",
+  apiKey: "AIzaSyC2SedBlK50Vv-ojsA3qnURG23gNdnwMTg",
   authDomain: "prestaya-17cf1.firebaseapp.com",
   projectId: "prestaya-17cf1",
-  // ...todo lo demás
+  storageBucket: "prestaya-17cf1.firebasestorage.app",
+  messagingSenderId: "55820924690",
+  appId: "1:55820924690:web:0a2fe35a7db7d6889065cb",
+  measurementId: "G-2XM03ZDZ3J"
 };
 
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
-document.getElementById('btnRegistrar').onclick = function() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  auth.createUserWithEmailAndPassword(email, password)
-    .then(() => alert("Usuario registrado con éxito ✅"))
-    .catch((error) => alert("Error: " + error.message));
-};
-
-document.getElementById('btnLogin').onclick = function() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  auth.signInWithEmailAndPassword(email, password)
-    .then(() => alert("Sesión iniciada ✅"))
-    .catch((error) => alert("Error: " + error.message));
-};
