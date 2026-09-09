@@ -101,6 +101,7 @@ document.getElementById("formPrestamo").addEventListener("submit", (e) => {
 
 // ---------- CARGAR Y MOSTRAR TABLA ----------
 function cargarPrestamos(uid) {
+  cargarTasas(user.uid);  // <-- AGREGA ESTA
   db.collection("prestamos").where("uid", "==", uid)
   .orderBy("fecha", "desc")
   .onSnapshot((snapshot) => {
@@ -141,4 +142,30 @@ function cargarPrestamos(uid) {
       tabla += "</tbody>";
       document.getElementById("tablaPrestamos").innerHTML = tabla;
     });
+}
+let TASAS = { diario: 0.03, semanal: 0.15, mensual: 0.25 }; // Esto va arriba, debajo de const db
+
+// 1. GUARDAR TASAS
+function guardarTasas() {
+  const user = auth.currentUser;
+  const d = parseFloat(document.getElementById("tasaDiaria").value) / 100;
+  const s = parseFloat(document.getElementById("tasaSemanal").value) / 100;
+  const m = parseFloat(document.getElementById("tasaMensual").value) / 100;
+  
+  TASAS = { diario: d, semanal: s, mensual: m };
+
+  db.collection("config").doc(user.uid).set({ tasas: TASAS })
+  .then(() => alert("Tasas guardadas ✅"));
+}
+
+// 2. CARGAR TASAS AL ENTRAR
+function cargarTasas(uid) {
+  db.collection("config").doc(uid).get().then((doc) => {
+    if (doc.exists) {
+      TASAS = doc.data().tasas;
+      document.getElementById("tasaDiaria").value = (TASAS.diario * 100);
+      document.getElementById("tasaSemanal").value = (TAS.semanal * 100);
+      document.getElementById("tasaMensual").value = (TAS.mensual * 100);
+    }
+  });
 }
