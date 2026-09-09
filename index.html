@@ -9,15 +9,20 @@
 <body>
   <div id="app">
 
-    <!-- LOGIN - SOLO 1 VEZ -->
-    <div id="login">
-      <h1>🔒 PrestaYa</h1>
-      <input type="email" id="email" placeholder="Correo" required>
-      <input type="password" id="password" placeholder="Contraseña" required>
-      <button onclick="login()">Entrar</button>
-      <button onclick="registrar()">Registrarme</button>
+   <!-- LOGIN - TODO EN 1 SOLA TARJETA -->
+<div id="login">
+  <div class="login-card">
+    <h1>💰 PrestaYa</h1>
+    <input type="email" id="email" placeholder="Correo" required>
+    <input type="password" id="password" placeholder="Contraseña" required>
+    
+    <div class="botones-login">
+      <button class="btn btn-azul" onclick="login()">Entrar</button>
+      <button class="btn btn-celeste" onclick="registrar()">Registrarme</button>
+      <button class="btn btn-rojo" onclick="logout()">Salir</button>
     </div>
-
+  </div>
+</div>
 
     <!-- APP PRINCIPAL -->
     <div id="main" style="display:none;">
