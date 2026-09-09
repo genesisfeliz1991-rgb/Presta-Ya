@@ -105,19 +105,40 @@ async function guardarPrestamo() {
   const monto = document.getElementById("monto").value;
   const plazoTipo = document.getElementById("plazoTipo").value;
   const plazo = document.getElementById("plazo").value;
+// 1. PRIMERO LLAMAMOS A LA FUNCION PARA CALCULAR
 const calculo = calcularPrestamo(Number(monto), plazoTipo, Number(plazo));
 
+// 2. DESPUÉS GUARDAMOS LOS DATOS CON EL RESULTADO
 const datos = {
   uid: user.uid,
   nombreCliente,
   monto: Number(monto),
   plazoTipo,
   plazo: Number(plazo),
-  interesTotal: calculo.interesTotal,
+  interesTotal: calculo.interesTotal,  // todo en minúscula
   totalPagar: calculo.totalPagar,
   cuota: calculo.cuota,
-  ganancia: calculo.interesTotal, // esto es lo que te ganas
+  ganancia: calculo.interesTotal, // Esto es la ganancia
   fecha: new Date().toISOString()
+};
+  // Pega esta función DESPUÉS de guardarPrestamo
+function calcularPrestamo(monto, plazoTipo, plazo) {
+  let interes = 0;
+  
+  if (plazoTipo === "diario") interes = 0.02;  // 2%
+  if (plazoTipo === "semanal") interes = 0.05; // 5%
+  if (plazoTipo === "mensual") interes = 0.10; // 10%
+
+  const interesTotal = monto * interes * plazo;
+  const totalPagar = monto + interesTotal;
+  const cuota = totalPagar / plazo;
+
+  return { // OJO: esto es importante
+    interesTotal,
+    totalPagar,
+    cuota
+  };
+}
 };
 // Función para calcular interés y cuota
 function calcularPrestamo(monto, plazoTipo, plazo) {
