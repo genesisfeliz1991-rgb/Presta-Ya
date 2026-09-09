@@ -48,3 +48,47 @@
   <span id="userEmail"></span>
   <button onclick="logout()">Salir</button>
 </header>
+
+<!-- FORMULARIO PARA METER EL PRÉSTAMO -->
+<div id="main" style="display:none">
+  <header>
+    <span id="userEmail"></span>
+    <button onclick="logout()">Salir</button>
+  </header>
+
+  <h2>Registrar Préstamo</h2>
+  <form id="formPrestamo">
+    <input id="nombreCliente" type="text" placeholder="Nombre del Cliente" required>
+    <input id="monto" type="number" placeholder="Monto RD$" required>
+    
+    <select id="plazoTipo" required>
+      <option value="">Tipo de Préstamo</option>
+      <option value="diario">Diario</option>
+      <option value="semanal">Semanal</option>
+      <option value="mensual">Mensual</option>
+    </select>
+
+    <input id="plazo" type="number" placeholder="Cantidad de Cuotas" required>
+    
+    <button type="submit">Guardar Préstamo</button>
+  </form>
+
+  <h2>Lista de Préstamos</h2>
+  <table id="tablaPrestamos">
+    <!-- Aquí el script.js va a meter las filas solo -->
+  </table>
+</div>
+
+<!-- LOGIN -->
+<div id="login">
+  <h2>Login</h2>
+  <input id="email" type="email" placeholder="Correo">
+  <input id="password" type="password" placeholder="Contraseña">
+  <button onclick="registrar()">Registrar</button>
+  <button onclick="login()">Iniciar Sesión</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+<script src="script.js"></script>
