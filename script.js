@@ -5,7 +5,8 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebas
 import { 
   getAuth, 
   createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword 
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // Your web app's Firebase configuration
@@ -14,8 +15,8 @@ const firebaseConfig = {
   authDomain: "prestaya-17cf1.firebaseapp.com",
   projectId: "prestaya-17cf1",
   storageBucket: "prestaya-17cf1.firebasestorage.app",
-  messagingSenderId: "558209246 90",
-  appId: "1:558209246 90:web:0a2fe35a7db7d6889065cb",
+  messagingSenderId: "55820924690",
+  appId: "1:55820924690:web:0a2fe35a7db7d6889065cb",
   measurementId: "G-2XM03ZDZ3J"
 };
 
@@ -52,9 +53,6 @@ function login() {
     });
 }
 
-window.registrar = registrar;
-window.login = login;
-
 // Cerrar sesión
 function logout() {
   auth.signOut().then(() => {
@@ -68,5 +66,19 @@ function imprimir() {
   window.print();
 }
 
+// Detectar si hay sesión activa
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("main").style.display = "block";
+    document.getElementById("userEmail").textContent = user.email;
+  } else {
+    document.getElementById("login").style.display = "block";
+    document.getElementById("main").style.display = "none";
+  }
+});
+
+window.registrar = registrar;
+window.login = login;
 window.logout = logout;
 window.imprimir = imprimir;
