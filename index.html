@@ -4,65 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PrestaYa PRO</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2"> <!-- ?v=2 para forzar caché -->
 </head>
 <body>
   <div id="app">
 
-   <!-- LOGIN - TODO EN 1 SOLA TARJETA -->
-<div id="login">
-  <div class="login-card">
-    <h1>💰 PrestaYa</h1>
-    <input type="email" id="email" placeholder="Correo" required>
-    <input type="password" id="password" placeholder="Contraseña" required>
-    
-    <div class="botones-login">
-      <button class="btn btn-azul" onclick="login()">Entrar</button>
-      <button class="btn btn-celeste" onclick="registrar()">Registrarme</button>
-      <button class="btn btn-rojo" onclick="logout()">Salir</button>
+    <!-- LOGIN -->
+    <div id="login">
+      <div class="login-card">
+        <h1>💰 PrestaYa</h1>
+        <input type="email" id="email" placeholder="Correo" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        
+        <div class="botones-login">
+          <button class="btn btn-azul" onclick="login()">Entrar</button>
+          <button class="btn btn-celeste" onclick="registrar()">Registrarme</button>
+          <button class="btn btn-rojo" onclick="logout()">Salir</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
     <!-- APP PRINCIPAL -->
     <div id="main" style="display:none;">
       <header>
         <span>Usuario: <b id="userEmail"></b></span>
-        <button onclick="logout()">Salir</button>
+        <button class="btn-salir" onclick="logout()">Salir</button>
       </header>
 
       <h2>Nuevo Préstamo</h2>
       <form id="formPrestamo">
         <input type="text" id="nombreCliente" placeholder="Nombre Cliente" required>
         <input type="number" id="monto" placeholder="Monto RD$" required>
-        
         <select id="plazoTipo" required>
           <option value="">Tipo de Préstamo</option>
           <option value="diario">Diario</option>
           <option value="semanal">Semanal</option>
           <option value="mensual">Mensual</option>
         </select>
-        
         <input type="number" id="plazo" placeholder="Cantidad de cuotas" required>
-        
-        <button type="submit">Guardar Préstamo</button>
-        <button type="button" onclick="imprimir()">🖨️ Imprimir Recibo</button>
+        <button type="submit" class="btn btn-verde">Guardar Préstamo</button>
       </form>
 
       <h2>Clientes y Préstamos</h2>
-      <table id="tablaPrestamos">
-        <!-- Aquí el script.js mete las filas solo -->
-      </table>
+      <table id="tablaPrestamos"></table>
     </div>
 
   </div>
 
-  <!-- FIREBASE COMPAT + TU SCRIPT -->
-  <!-- OJO: como tu script.js usa import, quitamos type="module" y usamos compat -->
+  <!-- FIREBASE COMPAT -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 
 </body>
 </html>
